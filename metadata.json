@@ -1,0 +1,6 @@
+{
+  "name": "PristineNest",
+  "description": "Professional Cleaning Services Full-Stack Application",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

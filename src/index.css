@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #0066CC;
+  --color-brand-dark: #004E99;
+  --color-brand-accent: #82C300;
+  --color-brand-surface: #F0F9E8;
+  --color-brand-ice: #F8FAFC;
+
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@layer base {
+  html, body {
+    @apply overflow-x-hidden;
+  }
+  body {
+    @apply font-body bg-brand-ice text-brand-dark;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-brand-dark font-bold;
+  }
+}
+
+@keyframes float-bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float-bounce 6.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float {
+    animation: none;
+  }
+}
+
+/* Styles rendered HTML from the blog rich text editor — both while
+   writing (RichTextEditor) and on the public article page (BlogPost).
+   No @tailwindcss/typography plugin is installed, so this is written
+   by hand rather than relying on unverified `prose` classes. */
+.rich-content h1 { font-size: 1.875rem; font-weight: 800; color: var(--color-brand-dark); margin: 1.5rem 0 0.75rem; line-height: 1.2; }
+.rich-content h2 { font-size: 1.5rem; font-weight: 800; color: var(--color-brand-dark); margin: 1.5rem 0 0.75rem; line-height: 1.25; }
+.rich-content h3 { font-size: 1.25rem; font-weight: 700; color: var(--color-brand-dark); margin: 1.25rem 0 0.5rem; line-height: 1.3; }
+.rich-content p { margin: 0 0 1rem; line-height: 1.75; color: #414752; }
+.rich-content ul { list-style: disc; padding-left: 1.5rem; margin: 0 0 1rem; }
+.rich-content ol { list-style: decimal; padding-left: 1.5rem; margin: 0 0 1rem; }
+.rich-content li { margin: 0.375rem 0; line-height: 1.7; color: #414752; }
+.rich-content a { color: var(--color-brand-primary); text-decoration: underline; }
+.rich-content blockquote { border-left: 4px solid var(--color-brand-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #414752; }
+.rich-content img { border-radius: 1rem; max-width: 100%; margin: 1rem 0; }
+.rich-content strong { font-weight: 700; color: var(--color-brand-dark); }
+.rich-content p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #9ca3af;
+  pointer-events: none;
+  height: 0;
+}
