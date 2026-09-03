@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 interface ServiceItem {
@@ -48,6 +48,22 @@ function renderServiceCard(srv: ServiceItem, idx: number) {
 
 export default function Services() {
   const [activeTab, setActiveTab] = useState<'oneoff' | 'monthly'>('oneoff');
+  const resultsRef = useRef<HTMLDivElement>(null);
+
+  const allServices = [...residentialServices, ...commercialServices];
+  const oneOffCount = allServices.filter((srv) => srv.modes.includes('oneoff')).length;
+  const monthlyCount = allServices.filter((srv) => srv.modes.includes('monthly')).length;
+
+  function handleTabChange(tab: 'oneoff' | 'monthly') {
+    setActiveTab(tab);
+    // Gentle nudge toward the results, not a hard jump — just enough to
+    // bring the first grid into view so the filter's effect is visible
+    // without the page feeling like it yanked control away.
+    if (resultsRef.current) {
+      const top = resultsRef.current.getBoundingClientRect().top + window.scrollY - 96;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }
 
   return (
     <div className="w-full bg-[#F8FAFC] min-h-screen pb-24">
@@ -90,16 +106,16 @@ export default function Services() {
           <div className="flex flex-col items-center gap-3">
             <div className="inline-flex bg-white/80 backdrop-blur rounded-full p-2 shadow-sm">
               <button
-                onClick={() => setActiveTab('oneoff')}
+                onClick={() => handleTabChange('oneoff')}
                 className={`px-8 py-4 rounded-full font-bold text-base transition-all ${activeTab === 'oneoff' ? 'bg-[#004E99] text-white shadow-md' : 'text-[#314f00]'}`}
               >
-                One-Off Service
+                One-Off Service <span className={activeTab === 'oneoff' ? 'text-white/70' : 'text-[#314f00]/60'}>({oneOffCount})</span>
               </button>
               <button
-                onClick={() => setActiveTab('monthly')}
+                onClick={() => handleTabChange('monthly')}
                 className={`px-8 py-4 rounded-full font-bold text-base transition-all ${activeTab === 'monthly' ? 'bg-[#004E99] text-white shadow-md' : 'text-[#314f00]'}`}
               >
-                Monthly Contract
+                Monthly Contract <span className={activeTab === 'monthly' ? 'text-white/70' : 'text-[#314f00]/60'}>({monthlyCount})</span>
               </button>
             </div>
             <p className="text-xs text-[#314f00]/70 font-medium">
@@ -110,7 +126,7 @@ export default function Services() {
       </div>
 
       {/* Residential Services */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-24">
+      <div ref={resultsRef} className="max-w-7xl mx-auto px-6 md:px-12 mb-24">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-black text-[#004E99] mb-4">Residential Services</h2>
           <p className="text-lg text-gray-600 font-medium max-w-2xl mx-auto">
