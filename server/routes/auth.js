@@ -53,7 +53,7 @@ router.post('/setup', async (req, res) => {
 
     res.status(201).json({ user: publicUser(result.rows[0]) });
   } catch (err) {
-    if (err.code === '23505') {
+    if (err.code === 'ER_DUP_ENTRY') {
       return res.status(409).json({ error: 'An account with that email already exists' });
     }
     console.error('Setup failed:', err.message);
@@ -197,7 +197,7 @@ router.post('/staff', requireAuth, requireAdmin, async (req, res) => {
     // needs to copy it now and share it with the new staff member directly.
     res.status(201).json({ user: publicUser(result.rows[0]), tempPassword });
   } catch (err) {
-    if (err.code === '23505') {
+    if (err.code === 'ER_DUP_ENTRY') {
       return res.status(409).json({ error: 'An account with that email already exists' });
     }
     console.error('Creating staff account failed:', err.message);
