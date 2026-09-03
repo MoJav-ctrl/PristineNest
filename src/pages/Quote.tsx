@@ -63,7 +63,7 @@ export default function Quote() {
     fields.service_type = serviceType === 'oneoff' ? 'One-off visit' : serviceType === 'monthly' ? 'Monthly contract' : 'Not sure yet';
 
     try {
-      await submitToFormSubmit('pristinenestng@gmail.com', fields, 'New Quote Request — PristineNest Website');
+      await submitToFormSubmit('info@pristinenestng.com.ng', fields, 'New Quote Request — PristineNest Website');
       setStatus('success');
       form.reset();
       setServiceType('oneoff');

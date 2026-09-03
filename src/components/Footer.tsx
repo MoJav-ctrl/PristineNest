@@ -64,7 +64,7 @@ export default function Footer() {
           </p>
           <p className="font-body text-sm flex items-center gap-2 mt-2">
             <Mail className="text-[#004E99] w-4 h-4 shrink-0" />
-            pristinenestng@gmail.com
+            info@pristinenestng.com.ng
           </p>
         </div>
       </div>

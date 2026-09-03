@@ -13,7 +13,7 @@ export default function Contact() {
     data.forEach((value, key) => { fields[key] = String(value); });
 
     try {
-      await submitToFormSubmit('pristinenestng@gmail.com', fields, 'New Contact Form Submission — PristineNest Website');
+      await submitToFormSubmit('info@pristinenestng.com.ng', fields, 'New Contact Form Submission — PristineNest Website');
       setStatus('success');
       form.reset();
     } catch {
@@ -54,7 +54,7 @@ export default function Contact() {
               {status === 'error' && (
                 <div className="bg-red-50 border border-red-100 text-red-700 text-sm font-medium rounded-2xl px-5 py-4">
                   Something went wrong sending your message. Please try again, or email us directly at{' '}
-                  <a href="mailto:pristinenestng@gmail.com" className="font-bold underline">pristinenestng@gmail.com</a>.
+                  <a href="mailto:info@pristinenestng.com.ng" className="font-bold underline">info@pristinenestng.com.ng</a>.
                 </div>
               )}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -178,7 +178,6 @@ export default function Contact() {
               <div>
                 <h4 className="font-bold text-[#004E99] mb-1 text-lg">Email</h4>
                 <p className="text-gray-600 font-medium leading-relaxed">
-                  <a href="mailto:pristinenestng@gmail.com" className="hover:text-[#0066CC] transition-colors underline decoration-gray-200 underline-offset-4">pristinenestng@gmail.com</a><br/>
                   <a href="mailto:info@pristinenestng.com.ng" className="hover:text-[#0066CC] transition-colors underline decoration-gray-200 underline-offset-4">info@pristinenestng.com.ng</a>
                 </p>
               </div>
@@ -248,7 +247,7 @@ export default function Contact() {
               </div>
               <div className="text-left">
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Email</p>
-                <a href="mailto:pristinenestng@gmail.com" className="font-bold text-[#004E99] hover:text-[#0066CC] transition-colors">pristinenestng@gmail.com</a>
+                <a href="mailto:info@pristinenestng.com.ng" className="font-bold text-[#004E99] hover:text-[#0066CC] transition-colors">info@pristinenestng.com.ng</a>
               </div>
             </div>
           </div>
